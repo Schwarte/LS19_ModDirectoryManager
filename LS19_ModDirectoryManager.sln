@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS19_ModDirectoryManager", "LS19_ModDirectoryManager\LS19_ModDirectoryManager.csproj", "{A1F47923-75CB-4CC2-87C8-2913E7625ACE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1F47923-75CB-4CC2-87C8-2913E7625ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F47923-75CB-4CC2-87C8-2913E7625ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F47923-75CB-4CC2-87C8-2913E7625ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F47923-75CB-4CC2-87C8-2913E7625ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70FD5FBD-FFC3-4C0A-92C9-5AC8E6EAE0ED}
+	EndGlobalSection
+EndGlobal
