@@ -1,6 +1,6 @@
 ﻿namespace LS19_ModDirectoryManager
 {
-    partial class ModDirPathTextbox
+    partial class ModDirManagerForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -160,12 +160,12 @@
             this.StartGameButton.UseVisualStyleBackColor = true;
             this.StartGameButton.Click += new System.EventHandler(this.StartGameButton_Click);
             // 
-            // ModDirPathTextbox
+            // ModDirManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(763, 450);
+            this.ClientSize = new System.Drawing.Size(760, 441);
             this.Controls.Add(this.StartGameButton);
             this.Controls.Add(this.SelectModDirListbox);
             this.Controls.Add(this.SelectModDirLabel);
@@ -178,8 +178,9 @@
             this.Controls.Add(this.GamePathButton);
             this.Controls.Add(this.GamePathTextbox);
             this.Controls.Add(this.GamePathLabel);
-            this.Name = "ModDirPathTextbox";
+            this.Name = "ModDirManagerForm";
             this.Text = "LS19 Modordner Auswahl";
+            this.Load += new System.EventHandler(this.ModDirPathTextbox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -16,7 +16,7 @@ namespace LS19_ModDirectoryManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ModDirPathTextbox());
+            Application.Run(new ModDirManagerForm());
         }
     }
 }
