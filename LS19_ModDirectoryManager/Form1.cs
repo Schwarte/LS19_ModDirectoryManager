@@ -16,16 +16,26 @@ namespace LS19_ModDirectoryManager
     {
         string gameFilePath = "c:\\";
         string allModsFilePath = "c:\\";
-
+        static string user = Environment.UserName;
+        static string dataPath = "C:\\Users\\" + user + "\\Documents\\My Games\\FarmingSimulator2019";
+        string metaDataPath = dataPath + "\\LS19_ModDirectoryManager_Metadata.txt";
         public ModDirManagerForm()
         {
             InitializeComponent();
 
-            
+            if (File.Exists(@metaDataPath))
+            {
+                ErrorLabel.Text = "Metadatei vorhanden";
+            }
+            else
+            {
+                ErrorLabel.Text = "Metadatei wurde erstellt";
+                File.Create(metaDataPath);
+            }
 
-          //  var gameFileContent = string.Empty;
-          //  var gameFilePath = string.Empty;
-          //  var allModsFilePath = string.Empty;
+            ModDirPathLabel.Visible = false;
+            ModDirPathButton.Visible = false;
+            ModDirPathTextbox.Visible = false;
         }
 
         private void GamePathButton_Click(object sender, EventArgs e)
@@ -54,7 +64,7 @@ namespace LS19_ModDirectoryManager
             objDialog.SelectedPath = @allModsFilePath;       // Vorgabe Pfad (und danach der gewählte Pfad)
             DialogResult objResult = objDialog.ShowDialog(this);
             allModsFilePath = objDialog.SelectedPath;
-            ModDirPath.Text = allModsFilePath;
+            ModDirPathTextbox.Text = allModsFilePath;
         }
 
         private void CreateNewModDirButton_Click(object sender, EventArgs e)
@@ -75,6 +85,21 @@ namespace LS19_ModDirectoryManager
         private void ModDirPathTextbox_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ModDirExtCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ModDirExtCheckbox.Checked == true)
+            {
+                ModDirPathLabel.Visible = true;
+                ModDirPathButton.Visible = true;
+                ModDirPathTextbox.Visible = true;
+            } else if (ModDirExtCheckbox.Checked == false)
+            {
+                ModDirPathLabel.Visible = false;
+                ModDirPathButton.Visible = false;
+                ModDirPathTextbox.Visible = false;
+            }
         }
     }
 }

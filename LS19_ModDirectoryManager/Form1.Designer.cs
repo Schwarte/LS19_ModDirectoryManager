@@ -32,7 +32,7 @@
             this.GamePathTextbox = new System.Windows.Forms.TextBox();
             this.GamePathButton = new System.Windows.Forms.Button();
             this.ModDirPathButton = new System.Windows.Forms.Button();
-            this.ModDirPath = new System.Windows.Forms.TextBox();
+            this.ModDirPathTextbox = new System.Windows.Forms.TextBox();
             this.ModDirPathLabel = new System.Windows.Forms.Label();
             this.CreateNewModDirButton = new System.Windows.Forms.Button();
             this.CreateNewModDirTextbox = new System.Windows.Forms.TextBox();
@@ -40,6 +40,8 @@
             this.SelectModDirLabel = new System.Windows.Forms.Label();
             this.SelectModDirListbox = new System.Windows.Forms.ListBox();
             this.StartGameButton = new System.Windows.Forms.Button();
+            this.ErrorLabel = new System.Windows.Forms.Label();
+            this.ModDirExtCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // GamePathLabel
@@ -74,7 +76,7 @@
             // 
             // ModDirPathButton
             // 
-            this.ModDirPathButton.Location = new System.Drawing.Point(581, 103);
+            this.ModDirPathButton.Location = new System.Drawing.Point(581, 136);
             this.ModDirPathButton.Name = "ModDirPathButton";
             this.ModDirPathButton.Size = new System.Drawing.Size(161, 20);
             this.ModDirPathButton.TabIndex = 5;
@@ -82,20 +84,20 @@
             this.ModDirPathButton.UseVisualStyleBackColor = true;
             this.ModDirPathButton.Click += new System.EventHandler(this.ModDirPathButton_Click);
             // 
-            // ModDirPath
+            // ModDirPathTextbox
             // 
-            this.ModDirPath.Location = new System.Drawing.Point(22, 103);
-            this.ModDirPath.Name = "ModDirPath";
-            this.ModDirPath.Size = new System.Drawing.Size(545, 20);
-            this.ModDirPath.TabIndex = 4;
-            this.ModDirPath.Text = "C:\\Users\\USERNAME\\Documents\\LS19 Mods";
+            this.ModDirPathTextbox.Location = new System.Drawing.Point(22, 136);
+            this.ModDirPathTextbox.Name = "ModDirPathTextbox";
+            this.ModDirPathTextbox.Size = new System.Drawing.Size(545, 20);
+            this.ModDirPathTextbox.TabIndex = 4;
+            this.ModDirPathTextbox.Text = "C:\\Users\\USERNAME\\Documents\\LS19 Mods";
             // 
             // ModDirPathLabel
             // 
             this.ModDirPathLabel.AutoSize = true;
             this.ModDirPathLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModDirPathLabel.ForeColor = System.Drawing.SystemColors.Window;
-            this.ModDirPathLabel.Location = new System.Drawing.Point(18, 81);
+            this.ModDirPathLabel.Location = new System.Drawing.Point(18, 114);
             this.ModDirPathLabel.Name = "ModDirPathLabel";
             this.ModDirPathLabel.Size = new System.Drawing.Size(158, 19);
             this.ModDirPathLabel.TabIndex = 3;
@@ -103,7 +105,7 @@
             // 
             // CreateNewModDirButton
             // 
-            this.CreateNewModDirButton.Location = new System.Drawing.Point(275, 167);
+            this.CreateNewModDirButton.Location = new System.Drawing.Point(275, 200);
             this.CreateNewModDirButton.Name = "CreateNewModDirButton";
             this.CreateNewModDirButton.Size = new System.Drawing.Size(161, 20);
             this.CreateNewModDirButton.TabIndex = 8;
@@ -113,7 +115,7 @@
             // 
             // CreateNewModDirTextbox
             // 
-            this.CreateNewModDirTextbox.Location = new System.Drawing.Point(22, 167);
+            this.CreateNewModDirTextbox.Location = new System.Drawing.Point(22, 200);
             this.CreateNewModDirTextbox.Name = "CreateNewModDirTextbox";
             this.CreateNewModDirTextbox.Size = new System.Drawing.Size(238, 20);
             this.CreateNewModDirTextbox.TabIndex = 7;
@@ -124,7 +126,7 @@
             this.CreateNewModDirLabel.AutoSize = true;
             this.CreateNewModDirLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateNewModDirLabel.ForeColor = System.Drawing.SystemColors.Window;
-            this.CreateNewModDirLabel.Location = new System.Drawing.Point(18, 145);
+            this.CreateNewModDirLabel.Location = new System.Drawing.Point(18, 178);
             this.CreateNewModDirLabel.Name = "CreateNewModDirLabel";
             this.CreateNewModDirLabel.Size = new System.Drawing.Size(199, 19);
             this.CreateNewModDirLabel.TabIndex = 6;
@@ -135,7 +137,7 @@
             this.SelectModDirLabel.AutoSize = true;
             this.SelectModDirLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectModDirLabel.ForeColor = System.Drawing.SystemColors.Window;
-            this.SelectModDirLabel.Location = new System.Drawing.Point(18, 209);
+            this.SelectModDirLabel.Location = new System.Drawing.Point(18, 242);
             this.SelectModDirLabel.Name = "SelectModDirLabel";
             this.SelectModDirLabel.Size = new System.Drawing.Size(166, 19);
             this.SelectModDirLabel.TabIndex = 9;
@@ -144,7 +146,7 @@
             // SelectModDirListbox
             // 
             this.SelectModDirListbox.FormattingEnabled = true;
-            this.SelectModDirListbox.Location = new System.Drawing.Point(22, 231);
+            this.SelectModDirListbox.Location = new System.Drawing.Point(22, 264);
             this.SelectModDirListbox.Name = "SelectModDirListbox";
             this.SelectModDirListbox.Size = new System.Drawing.Size(238, 186);
             this.SelectModDirListbox.TabIndex = 10;
@@ -152,7 +154,7 @@
             // 
             // StartGameButton
             // 
-            this.StartGameButton.Location = new System.Drawing.Point(581, 372);
+            this.StartGameButton.Location = new System.Drawing.Point(581, 405);
             this.StartGameButton.Name = "StartGameButton";
             this.StartGameButton.Size = new System.Drawing.Size(161, 45);
             this.StartGameButton.TabIndex = 11;
@@ -160,12 +162,38 @@
             this.StartGameButton.UseVisualStyleBackColor = true;
             this.StartGameButton.Click += new System.EventHandler(this.StartGameButton_Click);
             // 
+            // ErrorLabel
+            // 
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.ErrorLabel.Location = new System.Drawing.Point(283, 264);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(39, 19);
+            this.ErrorLabel.TabIndex = 12;
+            this.ErrorLabel.Text = "Test";
+            // 
+            // ModDirExtCheckbox
+            // 
+            this.ModDirExtCheckbox.AutoSize = true;
+            this.ModDirExtCheckbox.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModDirExtCheckbox.ForeColor = System.Drawing.SystemColors.Window;
+            this.ModDirExtCheckbox.Location = new System.Drawing.Point(22, 79);
+            this.ModDirExtCheckbox.Name = "ModDirExtCheckbox";
+            this.ModDirExtCheckbox.Size = new System.Drawing.Size(227, 23);
+            this.ModDirExtCheckbox.TabIndex = 14;
+            this.ModDirExtCheckbox.Text = "Modordner extern speichern";
+            this.ModDirExtCheckbox.UseVisualStyleBackColor = true;
+            this.ModDirExtCheckbox.CheckedChanged += new System.EventHandler(this.ModDirExtCheckbox_CheckedChanged);
+            // 
             // ModDirManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(760, 441);
+            this.ClientSize = new System.Drawing.Size(760, 472);
+            this.Controls.Add(this.ModDirExtCheckbox);
+            this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.StartGameButton);
             this.Controls.Add(this.SelectModDirListbox);
             this.Controls.Add(this.SelectModDirLabel);
@@ -173,7 +201,7 @@
             this.Controls.Add(this.CreateNewModDirTextbox);
             this.Controls.Add(this.CreateNewModDirLabel);
             this.Controls.Add(this.ModDirPathButton);
-            this.Controls.Add(this.ModDirPath);
+            this.Controls.Add(this.ModDirPathTextbox);
             this.Controls.Add(this.ModDirPathLabel);
             this.Controls.Add(this.GamePathButton);
             this.Controls.Add(this.GamePathTextbox);
@@ -192,7 +220,7 @@
         private System.Windows.Forms.TextBox GamePathTextbox;
         private System.Windows.Forms.Button GamePathButton;
         private System.Windows.Forms.Button ModDirPathButton;
-        private System.Windows.Forms.TextBox ModDirPath;
+        private System.Windows.Forms.TextBox ModDirPathTextbox;
         private System.Windows.Forms.Label ModDirPathLabel;
         private System.Windows.Forms.Button CreateNewModDirButton;
         private System.Windows.Forms.TextBox CreateNewModDirTextbox;
@@ -200,6 +228,8 @@
         private System.Windows.Forms.Label SelectModDirLabel;
         private System.Windows.Forms.ListBox SelectModDirListbox;
         private System.Windows.Forms.Button StartGameButton;
+        private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.CheckBox ModDirExtCheckbox;
     }
 }
 
