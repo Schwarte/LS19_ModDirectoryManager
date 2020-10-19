@@ -36,7 +36,8 @@ namespace LS19_ModDirectoryManager
                     if (metaData[2] == "true")
                     {
                         ModDirExtCheckbox.Checked = true;
-                    } else
+                    } 
+                    else
                     {
                         ModDirPathLabel.Visible = false;
                         ModDirPathButton.Visible = false;
@@ -102,7 +103,18 @@ namespace LS19_ModDirectoryManager
 
         private void CreateNewModDirButton_Click(object sender, EventArgs e)
         {
+            string modDirName = CreateNewModDirTextbox.Text;
 
+            if (ModDirExtCheckbox.Checked == true)
+            {
+                string newModDir = ModDirPathTextbox.Text + "\\mods" + modDirName;
+                Directory.CreateDirectory(newModDir);
+            }
+            else
+            {
+                string newModDir = dataPath + "\\mods" + modDirName;
+                Directory.CreateDirectory(newModDir);
+            }
         }
 
         private void SelectModDirListbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +131,8 @@ namespace LS19_ModDirectoryManager
             if (ModDirExtCheckbox.Checked == true)
             {
                 metadata[2] = "true";
-            } else
+            } 
+            else
             {
                 metadata[2] = "false";
             }
