@@ -26,16 +26,33 @@ namespace LS19_ModDirectoryManager
             if (File.Exists(@metaDataPath))
             {
                 ErrorLabel.Text = "Metadatei vorhanden";
+                string[] metaData = System.IO.File.ReadAllLines(metaDataPath);
+
+                if (metaData.Length == 3)
+                {
+                    GamePathTextbox.Text = metaData[0];
+                    ModDirPathTextbox.Text = metaData[1];
+
+                    if (metaData[2] == "true")
+                    {
+                        ModDirExtCheckbox.Checked = true;
+                    } else
+                    {
+                        ModDirPathLabel.Visible = false;
+                        ModDirPathButton.Visible = false;
+                        ModDirPathTextbox.Visible = false;
+                    } 
+                }
             }
             else
             {
                 ErrorLabel.Text = "Metadatei wurde erstellt";
                 File.Create(metaDataPath);
-            }
 
-            ModDirPathLabel.Visible = false;
-            ModDirPathButton.Visible = false;
-            ModDirPathTextbox.Visible = false;
+                ModDirPathLabel.Visible = false;
+                ModDirPathButton.Visible = false;
+                ModDirPathTextbox.Visible = false;
+            }
         }
 
         private void GamePathButton_Click(object sender, EventArgs e)
@@ -56,6 +73,22 @@ namespace LS19_ModDirectoryManager
                 }
             }
         }
+        
+        private void ModDirExtCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ModDirExtCheckbox.Checked == true)
+            {
+                ModDirPathLabel.Visible = true;
+                ModDirPathButton.Visible = true;
+                ModDirPathTextbox.Visible = true;
+            }
+            else if (ModDirExtCheckbox.Checked == false)
+            {
+                ModDirPathLabel.Visible = false;
+                ModDirPathButton.Visible = false;
+                ModDirPathTextbox.Visible = false;
+            }
+        }
 
         private void ModDirPathButton_Click(object sender, EventArgs e)
         {
@@ -72,34 +105,26 @@ namespace LS19_ModDirectoryManager
 
         }
 
-        private void StartGameButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SelectModDirListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void ModDirPathTextbox_Load(object sender, EventArgs e)
+        private void StartGameButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void ModDirExtCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
+            string[] metadata = new string[3];
+            metadata[0] = GamePathTextbox.Text;
+            metadata[1] = ModDirPathTextbox.Text;
+            
             if (ModDirExtCheckbox.Checked == true)
             {
-                ModDirPathLabel.Visible = true;
-                ModDirPathButton.Visible = true;
-                ModDirPathTextbox.Visible = true;
-            } else if (ModDirExtCheckbox.Checked == false)
+                metadata[2] = "true";
+            } else
             {
-                ModDirPathLabel.Visible = false;
-                ModDirPathButton.Visible = false;
-                ModDirPathTextbox.Visible = false;
+                metadata[2] = "false";
             }
+                   
+            System.IO.File.WriteAllLines(@metaDataPath, metadata);
         }
     }
 }

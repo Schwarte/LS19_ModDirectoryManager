@@ -208,7 +208,6 @@
             this.Controls.Add(this.GamePathLabel);
             this.Name = "ModDirManagerForm";
             this.Text = "LS19 Modordner Auswahl";
-            this.Load += new System.EventHandler(this.ModDirPathTextbox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
