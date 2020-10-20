@@ -42,6 +42,7 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.ModDirExtCheckbox = new System.Windows.Forms.CheckBox();
+            this.openSelectedModDirButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GamePathLabel
@@ -150,7 +151,6 @@
             this.SelectModDirListbox.Name = "SelectModDirListbox";
             this.SelectModDirListbox.Size = new System.Drawing.Size(238, 186);
             this.SelectModDirListbox.TabIndex = 10;
-            this.SelectModDirListbox.SelectedIndexChanged += new System.EventHandler(this.SelectModDirListbox_SelectedIndexChanged);
             // 
             // StartGameButton
             // 
@@ -186,12 +186,23 @@
             this.ModDirExtCheckbox.UseVisualStyleBackColor = true;
             this.ModDirExtCheckbox.CheckedChanged += new System.EventHandler(this.ModDirExtCheckbox_CheckedChanged);
             // 
+            // openSelectedModDirButton
+            // 
+            this.openSelectedModDirButton.Location = new System.Drawing.Point(275, 430);
+            this.openSelectedModDirButton.Name = "openSelectedModDirButton";
+            this.openSelectedModDirButton.Size = new System.Drawing.Size(161, 20);
+            this.openSelectedModDirButton.TabIndex = 15;
+            this.openSelectedModDirButton.Text = "Modordner öffnen";
+            this.openSelectedModDirButton.UseVisualStyleBackColor = true;
+            this.openSelectedModDirButton.Click += new System.EventHandler(this.openSelectedModDirButton_Click);
+            // 
             // ModDirManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(760, 472);
+            this.Controls.Add(this.openSelectedModDirButton);
             this.Controls.Add(this.ModDirExtCheckbox);
             this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.StartGameButton);
@@ -229,6 +240,7 @@
         private System.Windows.Forms.Button StartGameButton;
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.CheckBox ModDirExtCheckbox;
+        private System.Windows.Forms.Button openSelectedModDirButton;
     }
 }
 

@@ -28,7 +28,7 @@ namespace LS19_ModDirectoryManager
                 ErrorLabel.Text = "Metadatei vorhanden";
                 string[] metaData = System.IO.File.ReadAllLines(metaDataPath);
 
-                if (metaData.Length == 3)
+                if (metaData.Length >= 3)
                 {
                     GamePathTextbox.Text = metaData[0];
                     ModDirPathTextbox.Text = metaData[1];
@@ -36,9 +36,41 @@ namespace LS19_ModDirectoryManager
                     if (metaData[2] == "true")
                     {
                         ModDirExtCheckbox.Checked = true;
+                        string[] mods = Directory.GetDirectories(metaData[1],"mods*", SearchOption.TopDirectoryOnly);
+                        foreach (string mod in mods)
+                        {
+                            string path = metaData[1] + "\\mods";
+                            string[] seperator = new string[] { path };
+                            string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                            SelectModDirListbox.Items.Add(tmp[1]);
+                        }
                     } 
                     else
                     {
+                        string oldModPath = dataPath + "\\mods";
+                        string newOldModPath = dataPath + "\\modsAlt";
+                        if (Directory.Exists(oldModPath))
+                        {
+                            if (metaData[3] == "")
+                            {
+                                Directory.Move(oldModPath, newOldModPath);
+                            }
+                            else
+                            {
+                                string latestModPath = dataPath + "\\mods" + metaData[3];
+                                Directory.Move(oldModPath, latestModPath);
+                            }
+                        }
+
+                        string[] mods = Directory.GetDirectories(dataPath, "mods*", SearchOption.TopDirectoryOnly);
+                        foreach (string mod in mods)
+                        {
+                            string path = dataPath + "\\mods";
+                            string[] seperator = new string[] { path };
+                            string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                            SelectModDirListbox.Items.Add(tmp[1]);
+                        }
+
                         ModDirPathLabel.Visible = false;
                         ModDirPathButton.Visible = false;
                         ModDirPathTextbox.Visible = false;
@@ -74,7 +106,7 @@ namespace LS19_ModDirectoryManager
                 }
             }
         }
-        
+
         private void ModDirExtCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (ModDirExtCheckbox.Checked == true)
@@ -82,12 +114,33 @@ namespace LS19_ModDirectoryManager
                 ModDirPathLabel.Visible = true;
                 ModDirPathButton.Visible = true;
                 ModDirPathTextbox.Visible = true;
+
+                SelectModDirListbox.Items.Clear();
+                string[] mods = Directory.GetDirectories(ModDirPathTextbox.Text, "mods*", SearchOption.TopDirectoryOnly);
+                foreach (string mod in mods)
+                {
+                    string path = ModDirPathTextbox.Text + "\\mods";
+                    string[] seperator = new string[] { path };
+                    string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                    SelectModDirListbox.Items.Add(tmp[1]);
+                }
+
             }
             else if (ModDirExtCheckbox.Checked == false)
             {
                 ModDirPathLabel.Visible = false;
                 ModDirPathButton.Visible = false;
                 ModDirPathTextbox.Visible = false;
+
+                SelectModDirListbox.Items.Clear();
+                string[] mods = Directory.GetDirectories(dataPath, "mods*", SearchOption.TopDirectoryOnly);
+                foreach (string mod in mods)
+                {
+                    string path = dataPath + "\\mods";
+                    string[] seperator = new string[] { path };
+                    string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                    SelectModDirListbox.Items.Add(tmp[1]);
+                }
             }
         }
 
@@ -99,6 +152,17 @@ namespace LS19_ModDirectoryManager
             DialogResult objResult = objDialog.ShowDialog(this);
             allModsFilePath = objDialog.SelectedPath;
             ModDirPathTextbox.Text = allModsFilePath;
+
+            SelectModDirListbox.Items.Clear();
+            string[] mods = Directory.GetDirectories(ModDirPathTextbox.Text, "mods*", SearchOption.TopDirectoryOnly);
+            foreach (string mod in mods)
+            {
+                string path = ModDirPathTextbox.Text + "\\mods";
+                string[] seperator = new string[] { path };
+                string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                SelectModDirListbox.Items.Add(tmp[1]);
+            }
+
         }
 
         private void CreateNewModDirButton_Click(object sender, EventArgs e)
@@ -109,15 +173,36 @@ namespace LS19_ModDirectoryManager
             {
                 string newModDir = ModDirPathTextbox.Text + "\\mods" + modDirName;
                 Directory.CreateDirectory(newModDir);
+
+                SelectModDirListbox.Items.Clear();
+                string[] mods = Directory.GetDirectories(ModDirPathTextbox.Text, "mods*", SearchOption.TopDirectoryOnly);
+                foreach (string mod in mods)
+                {
+                    string path = ModDirPathTextbox.Text + "\\mods";
+                    string[] seperator = new string[] { path };
+                    string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                    SelectModDirListbox.Items.Add(tmp[1]);
+                }
+
             }
             else
             {
                 string newModDir = dataPath + "\\mods" + modDirName;
                 Directory.CreateDirectory(newModDir);
+
+                SelectModDirListbox.Items.Clear();
+                string[] mods = Directory.GetDirectories(dataPath, "mods*", SearchOption.TopDirectoryOnly);
+                foreach (string mod in mods)
+                {
+                    string path = dataPath + "\\mods";
+                    string[] seperator = new string[] { path };
+                    string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                    SelectModDirListbox.Items.Add(tmp[1]);
+                }
             }
         }
 
-        private void SelectModDirListbox_SelectedIndexChanged(object sender, EventArgs e)
+        private void openSelectedModDirButton_Click(object sender, EventArgs e)
         {
 
         }
