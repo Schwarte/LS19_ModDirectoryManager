@@ -81,6 +81,23 @@ namespace LS19_ModDirectoryManager
             {
                 File.Create(metaDataPath);
 
+                string oldModPath = dataPath + "\\mods";
+                string newOldModPath = dataPath + "\\modsAlt";
+                if (Directory.Exists(oldModPath))
+                {
+                    Directory.Move(oldModPath, newOldModPath);
+                }
+
+                SelectModDirListbox.Items.Clear();
+                string[] mods = Directory.GetDirectories(dataPath, "mods*", SearchOption.TopDirectoryOnly);
+                foreach (string mod in mods)
+                {
+                    string path = dataPath + "\\mods";
+                    string[] seperator = new string[] { path };
+                    string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                    SelectModDirListbox.Items.Add(tmp[1]);
+                }
+
                 ModDirPathLabel.Visible = false;
                 ModDirPathButton.Visible = false;
                 ModDirPathTextbox.Visible = false;

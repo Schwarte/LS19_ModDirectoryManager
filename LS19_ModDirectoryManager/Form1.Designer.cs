@@ -63,8 +63,7 @@
             this.GamePathTextbox.Name = "GamePathTextbox";
             this.GamePathTextbox.Size = new System.Drawing.Size(545, 20);
             this.GamePathTextbox.TabIndex = 1;
-            this.GamePathTextbox.Text = "C:\\Program Files\\Steam\\steamapps\\common\\Farming Simulator 19\\FarmingSimulator2019" +
-    ".exe";
+            this.GamePathTextbox.Text = "C:";
             // 
             // GamePathButton
             // 
@@ -92,7 +91,7 @@
             this.ModDirPathTextbox.Name = "ModDirPathTextbox";
             this.ModDirPathTextbox.Size = new System.Drawing.Size(545, 20);
             this.ModDirPathTextbox.TabIndex = 4;
-            this.ModDirPathTextbox.Text = "C:\\Users\\USERNAME\\Documents\\LS19 Mods";
+            this.ModDirPathTextbox.Text = "C:";
             // 
             // ModDirPathLabel
             // 
