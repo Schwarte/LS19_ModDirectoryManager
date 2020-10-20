@@ -43,6 +43,7 @@
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.ModDirExtCheckbox = new System.Windows.Forms.CheckBox();
             this.openSelectedModDirButton = new System.Windows.Forms.Button();
+            this.StartProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // GamePathLabel
@@ -196,12 +197,20 @@
             this.openSelectedModDirButton.UseVisualStyleBackColor = true;
             this.openSelectedModDirButton.Click += new System.EventHandler(this.openSelectedModDirButton_Click);
             // 
+            // StartProgressBar
+            // 
+            this.StartProgressBar.Location = new System.Drawing.Point(275, 362);
+            this.StartProgressBar.Name = "StartProgressBar";
+            this.StartProgressBar.Size = new System.Drawing.Size(467, 27);
+            this.StartProgressBar.TabIndex = 16;
+            // 
             // ModDirManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(760, 472);
+            this.Controls.Add(this.StartProgressBar);
             this.Controls.Add(this.openSelectedModDirButton);
             this.Controls.Add(this.ModDirExtCheckbox);
             this.Controls.Add(this.ErrorLabel);
@@ -241,6 +250,7 @@
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.CheckBox ModDirExtCheckbox;
         private System.Windows.Forms.Button openSelectedModDirButton;
+        private System.Windows.Forms.ProgressBar StartProgressBar;
     }
 }
 
