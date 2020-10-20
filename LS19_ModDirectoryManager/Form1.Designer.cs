@@ -40,10 +40,10 @@
             this.SelectModDirLabel = new System.Windows.Forms.Label();
             this.SelectModDirListbox = new System.Windows.Forms.ListBox();
             this.StartGameButton = new System.Windows.Forms.Button();
-            this.ErrorLabel = new System.Windows.Forms.Label();
             this.ModDirExtCheckbox = new System.Windows.Forms.CheckBox();
             this.openSelectedModDirButton = new System.Windows.Forms.Button();
             this.StartProgressBar = new System.Windows.Forms.ProgressBar();
+            this.deleteModDir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GamePathLabel
@@ -163,17 +163,6 @@
             this.StartGameButton.UseVisualStyleBackColor = true;
             this.StartGameButton.Click += new System.EventHandler(this.StartGameButton_Click);
             // 
-            // ErrorLabel
-            // 
-            this.ErrorLabel.AutoSize = true;
-            this.ErrorLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrorLabel.Location = new System.Drawing.Point(283, 264);
-            this.ErrorLabel.Name = "ErrorLabel";
-            this.ErrorLabel.Size = new System.Drawing.Size(39, 19);
-            this.ErrorLabel.TabIndex = 12;
-            this.ErrorLabel.Text = "Test";
-            // 
             // ModDirExtCheckbox
             // 
             this.ModDirExtCheckbox.AutoSize = true;
@@ -189,7 +178,7 @@
             // 
             // openSelectedModDirButton
             // 
-            this.openSelectedModDirButton.Location = new System.Drawing.Point(275, 430);
+            this.openSelectedModDirButton.Location = new System.Drawing.Point(275, 264);
             this.openSelectedModDirButton.Name = "openSelectedModDirButton";
             this.openSelectedModDirButton.Size = new System.Drawing.Size(161, 20);
             this.openSelectedModDirButton.TabIndex = 15;
@@ -204,16 +193,26 @@
             this.StartProgressBar.Size = new System.Drawing.Size(467, 27);
             this.StartProgressBar.TabIndex = 16;
             // 
+            // deleteModDir
+            // 
+            this.deleteModDir.Location = new System.Drawing.Point(275, 430);
+            this.deleteModDir.Name = "deleteModDir";
+            this.deleteModDir.Size = new System.Drawing.Size(161, 20);
+            this.deleteModDir.TabIndex = 17;
+            this.deleteModDir.Text = "Modordner löschen";
+            this.deleteModDir.UseVisualStyleBackColor = true;
+            this.deleteModDir.Click += new System.EventHandler(this.deleteModDir_Click);
+            // 
             // ModDirManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(760, 472);
+            this.Controls.Add(this.deleteModDir);
             this.Controls.Add(this.StartProgressBar);
             this.Controls.Add(this.openSelectedModDirButton);
             this.Controls.Add(this.ModDirExtCheckbox);
-            this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.StartGameButton);
             this.Controls.Add(this.SelectModDirListbox);
             this.Controls.Add(this.SelectModDirLabel);
@@ -247,10 +246,10 @@
         private System.Windows.Forms.Label SelectModDirLabel;
         private System.Windows.Forms.ListBox SelectModDirListbox;
         private System.Windows.Forms.Button StartGameButton;
-        private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.CheckBox ModDirExtCheckbox;
         private System.Windows.Forms.Button openSelectedModDirButton;
         private System.Windows.Forms.ProgressBar StartProgressBar;
+        private System.Windows.Forms.Button deleteModDir;
     }
 }
 

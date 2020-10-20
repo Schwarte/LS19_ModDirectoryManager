@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LS19_ModDirectoryManager
@@ -36,8 +29,10 @@ namespace LS19_ModDirectoryManager
 
                     if (metaData[2] == "true")
                     {
-                     
-                        Directory.Delete(Path.Combine(metaData[0], "mods"));
+                        if (Directory.Exists(Path.Combine(dataPath, "mods")))
+                        {
+                            Directory.Delete(Path.Combine(dataPath, "mods"), true);
+                        }                        
                         SelectModDirListbox.Items.Clear();
                         ModDirExtCheckbox.Checked = true;
                         string[] mods = Directory.GetDirectories(metaData[1],"mods*", SearchOption.TopDirectoryOnly);
@@ -207,7 +202,55 @@ namespace LS19_ModDirectoryManager
 
         private void openSelectedModDirButton_Click(object sender, EventArgs e)
         {
-            //Modordner öffnen, If Abzweigung für Checkbox, Pfad wieder zusammen setzen
+            string tmp = "mods" + SelectModDirListbox.SelectedItem.ToString();
+            if (ModDirExtCheckbox.Checked == true)
+            {
+                Process.Start(@Path.Combine(ModDirPathTextbox.Text, tmp));
+            }
+            else
+            {
+                Process.Start(@Path.Combine(dataPath, tmp));
+            }
+        }
+
+        private void deleteModDir_Click(object sender, EventArgs e)
+        {
+            string message = "Bist du dir sicher, dass du den Ordner \"" + SelectModDirListbox.SelectedItem.ToString() + "\" löschen möchtest?";
+            string caption = SelectModDirListbox.SelectedItem.ToString() + " löschen";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                string modname = "mods" + SelectModDirListbox.SelectedItem.ToString();
+                if (ModDirExtCheckbox.Checked == true)
+                {
+                    Directory.Delete(Path.Combine(ModDirPathTextbox.Text, modname), true);
+                    SelectModDirListbox.Items.Clear();
+                    string[] mods = Directory.GetDirectories(ModDirPathTextbox.Text, "mods*", SearchOption.TopDirectoryOnly);
+                    foreach (string mod in mods)
+                    {
+                        string path = ModDirPathTextbox.Text + "\\mods";
+                        string[] seperator = new string[] { path };
+                        string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                        SelectModDirListbox.Items.Add(tmp[1]);
+                    }
+                }
+                else
+                {
+                    Directory.Delete(Path.Combine(dataPath, modname), true);
+                    SelectModDirListbox.Items.Clear();
+                    string[] mods = Directory.GetDirectories(dataPath, "mods*", SearchOption.TopDirectoryOnly);
+                    foreach (string mod in mods)
+                    {
+                        string path = dataPath + "\\mods";
+                        string[] seperator = new string[] { path };
+                        string[] tmp = mod.Split(seperator, StringSplitOptions.None);
+                        SelectModDirListbox.Items.Add(tmp[1]);
+                    }
+                }
+            }
         }
 
         private void StartGameButton_Click(object sender, EventArgs e)
@@ -215,62 +258,70 @@ namespace LS19_ModDirectoryManager
             string[] metadata = new string[4];
             metadata[0] = GamePathTextbox.Text;
             metadata[1] = ModDirPathTextbox.Text;
-            
-            if (ModDirExtCheckbox.Checked == true)
+            if (SelectModDirListbox.SelectedIndex != -1)
+            {
+                if (ModDirExtCheckbox.Checked == true)
+                {
+                    metadata[2] = "true";
+                    metadata[3] = "empty";
+                    string orgPath = metadata[1] + "\\mods" + SelectModDirListbox.SelectedItem;
+                    string modPath = dataPath + "\\mods";
+
+                    if (Directory.Exists(modPath))
+                    {
+                        string[] mods = GetFileNames(orgPath, "*.zip");
+                        int modCount = mods.Length;
+                        int i = 0;
+                        StartProgressBar.Visible = true;
+                        StartProgressBar.Maximum = modCount;
+                        foreach (string mod in mods)
+                        {
+
+                            File.Copy(Path.Combine(orgPath, mod), Path.Combine(modPath, mod), true);
+
+                            i++;
+                            StartProgressBar.Value = i;
+                        }
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(modPath);
+                        string[] mods = GetFileNames(orgPath, "*.zip");
+                        int modCount = mods.Length;
+                        int i = 0;
+                        StartProgressBar.Visible = true;
+                        StartProgressBar.Maximum = modCount;
+                        foreach (string mod in mods)
+                        {
+                            File.Copy(Path.Combine(orgPath, mod), Path.Combine(modPath, mod));
+                            i++;
+                            StartProgressBar.Value = i;
+                        }
+                    }
+
+                }
+                else
+                {
+                    metadata[2] = "false";
+                    metadata[3] = SelectModDirListbox.SelectedItem.ToString();
+                    string modPath = dataPath + "\\mods";
+                    string selectedMods = modPath + metadata[3];
+                    if (Directory.Exists(modPath))
+                    {
+                        Directory.Delete(modPath);
+                        Directory.Move(selectedMods, modPath);
+                    }
+                    else
+                    {
+                        Directory.Move(selectedMods, modPath);
+                    }
+                }
+            }
+            else
             {
                 metadata[2] = "true";
                 metadata[3] = "empty";
-                string orgPath = metadata[1] + "\\mods" + SelectModDirListbox.SelectedItem;
-                string modPath = dataPath + "\\mods";
-                
-                if (Directory.Exists(modPath))
-                {
-                    string[] mods = GetFileNames(orgPath, "*.zip");
-                    int modCount = mods.Length;
-                    int i = 0;
-                    StartProgressBar.Visible = true;
-                    StartProgressBar.Maximum = modCount;
-                    foreach (string mod in mods)
-                    {
-                        
-                        File.Copy(Path.Combine(orgPath, mod), Path.Combine(modPath, mod),true);
-
-                        i++;
-                        StartProgressBar.Value = i;
-                    } 
-                }
-                else
-                {
-                    Directory.CreateDirectory(modPath);
-                    string[] mods = GetFileNames(orgPath, "*.zip");
-                    int modCount = mods.Length;
-                    int i = 0;
-                    StartProgressBar.Visible = true;
-                    StartProgressBar.Maximum = modCount;
-                    foreach (string mod in mods)
-                    {                    
-                        File.Copy(Path.Combine(orgPath, mod), Path.Combine(modPath, mod));
-                        i++;
-                        StartProgressBar.Value = i;
-                    } 
-                }
-
-            } 
-            else
-            {
-                metadata[2] = "false";
-                metadata[3] = SelectModDirListbox.SelectedItem.ToString();
-                string modPath = dataPath + "\\mods";
-                string selectedMods =modPath + metadata[3];
-                if (Directory.Exists(modPath))
-                {
-                    Directory.Delete(modPath);
-                    Directory.Move(selectedMods, modPath);
-                } 
-                else
-                {
-                    Directory.Move(selectedMods, modPath);
-                }
+                Directory.CreateDirectory(Path.Combine(dataPath, "mods"));
             }
                    
             System.IO.File.WriteAllLines(@metaDataPath, metadata);
